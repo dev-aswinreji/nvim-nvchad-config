@@ -1,11 +1,9 @@
 return {
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
     opts = require "configs.conform",
   },
 
-  -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -13,17 +11,42 @@ return {
     end,
   },
 
-  -- test new blink
-  -- { import = "nvchad.blink.lazyspec" },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "html",
+        "css",
+        "typescript",
+        "javascript",
+        "c_sharp",
+      },
+    },
+  },
+
+  -- Friendly snippets
+  {
+    "rafamadriz/friendly-snippets",
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
+    end,
+  },
 
   {
-  	"nvim-treesitter/nvim-treesitter",
-  	opts = {
-  		ensure_installed = {
-  			-- "vim", "lua", "vimdoc",
-        "html", "css",
-        "typescript","javascript", "c_sharp",
-  		},
-  	},
+    "onsails/lspkind.nvim",
+  },
+  -- Completion engine + snippet engine
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+    },
+    config = function()
+      require "plugins.cmp"
+    end,
   },
 }
