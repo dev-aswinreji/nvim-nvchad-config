@@ -20,6 +20,7 @@ return {
         "typescript",
         "javascript",
         "c_sharp",
+        "rust",
       },
     },
   },
